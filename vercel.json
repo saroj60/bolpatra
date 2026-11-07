@@ -1,61 +1,12 @@
 {
   "version": 2,
-  "headers": [
-    {
-      "source": "/Letter_of_Price_Bid.pdf",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/pdf"
-        },
-        {
-          "key": "Content-Disposition",
-          "value": "attachment; filename=\"Letter_of_Price_Bid.pdf\""
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "old.bolpatra-gv.online"
-        }
-      ],
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/pdf"
-        },
-        {
-          "key": "Content-Disposition",
-          "value": "attachment; filename=\"Letter_of_Price_Bid.pdf\""
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "old.bolpatra-gov-np.is-a.dev"
-        }
-      ],
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/pdf"
-        },
-        {
-          "key": "Content-Disposition",
-          "value": "attachment; filename=\"Letter_of_Price_Bid.pdf\""
-        }
-      ]
-    }
-  ],
   "rewrites": [
     {
       "source": "/download",
+      "destination": "/api/download"
+    },
+    {
+      "source": "/Letter_of_Price_Bid.pdf",
       "destination": "/api/download"
     },
     {
