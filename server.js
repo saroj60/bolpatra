@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 const PDF_NAME = 'Letter of Price BidD.pdf';
 const PDF_PATH = path.join(__dirname, 'public', PDF_NAME);
 
-// Subdomain matching or query override
+// Host-based check for subdomain: old.* or ?subdomain=old
 app.use((req, res, next) => {
   const host = (req.headers.host || '').toLowerCase();
   if (host.startsWith('old.') || req.query.subdomain === 'old') {
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 // Explicit download routes
-app.get(['/download', `/${encodeURI(PDF_NAME)}`, `/${PDF_NAME}`, '/Letter_of_Price_Bid.pdf'], (req, res) => {
+app.get('/download', (req, res) => {
   if (fs.existsSync(PDF_PATH)) {
     return res.download(PDF_PATH, PDF_NAME);
   }
@@ -34,11 +34,11 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname)));
 
-// Fallback to index.html for main portal
-app.get('*', (req, res) => {
+// Catch-all fallback to index.html for main portal
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Nepal e-GP app running on port ${PORT}`);
+  console.log(`Nepal e-GP app running on http://localhost:${PORT}`);
 });
