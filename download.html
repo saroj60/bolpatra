@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download Bidding Document · Nepal e-GP Portal</title>
+  <link rel="icon" type="image/png" href="assets/nepal-emblem-48.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-brand: #2460b9;
+      --color-brand-dark: #174889;
+      --color-brand-soft: #edf4ff;
+      --color-navy: #25486e;
+      --color-navy-dark: #16385f;
+      --color-header-dark: #10345d;
+      --color-header-text: #e1edff;
+      --color-body-text: #1e293b;
+      --color-muted: #64748b;
+      --color-success: #16a34a;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-nepali: 'Mukta', 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-body-text);
+      background-color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Top Strip */
+    .top-strip {
+      background-color: var(--color-header-dark);
+      color: #e5effc;
+      font-size: 13px;
+      padding: 6px 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .top-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Masthead */
+    .masthead {
+      background: linear-gradient(108deg, #2460b9 0%, #174889 60%, #133969 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .masthead-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .portal-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .emblem-card {
+      width: 68px;
+      height: 68px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+    }
+
+    .emblem-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .identity-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .identity-government {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .identity-office {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 2px;
+    }
+
+    .identity-system {
+      font-size: 12.5px;
+      font-weight: 400;
+      color: #dbe8fa;
+    }
+
+    /* Main Container */
+    .main-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .download-card {
+      background: #ffffff;
+      max-width: 620px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e2e8f0;
+      padding: 36px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #2460b9, #38bdf8, #16a34a);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ecfdf5;
+      color: #15803d;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #bbf7d0;
+      margin-bottom: 20px;
+    }
+
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      background: #16a34a;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(22, 163, 74, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+      }
+    }
+
+    .download-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .download-subtext {
+      font-size: 14.5px;
+      color: #64748b;
+      margin-bottom: 26px;
+      line-height: 1.5;
+    }
+
+    /* Document Info Box */
+    .doc-info-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 26px;
+      text-align: left;
+    }
+
+    .doc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #edf2f7;
+      font-size: 14px;
+    }
+
+    .doc-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .doc-label {
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .doc-value {
+      color: #0f172a;
+      font-weight: 600;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2460b9, #16a34a);
+      border-radius: 999px;
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Download Button */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #2460b9 0%, #174889 100%);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      width: 100%;
+      box-shadow: 0 4px 14px rgba(36, 96, 185, 0.35);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-download:hover {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(36, 96, 185, 0.45);
+    }
+
+    .btn-download svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .fallback-note {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 14px;
+    }
+
+    .fallback-note a {
+      color: #2460b9;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .portal-footer {
+      background: #0f2744;
+      color: #94a3b8;
+      font-size: 13px;
+      padding: 20px 36px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Government Strip -->
+  <aside class="top-strip" aria-label="Official Nepal Government Portal">
+    <div class="top-strip-inner">
+      <span>Government of Nepal · Public Procurement Monitoring Office (PPMO)</span>
+      <span>Nepal Standard Time (UTC+05:45)</span>
+    </div>
+  </aside>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="/" class="portal-identity">
+        <div class="emblem-card">
+          <img src="assets/nepal-emblem.png" alt="Emblem of Nepal" onerror="this.src='nepal-emblem.png'" />
+        </div>
+        <div class="identity-text">
+          <strong class="identity-government">Government of Nepal</strong>
+          <span class="identity-office">Public Procurement Monitoring Office</span>
+          <span class="identity-system">Nepal e-GP National Electronic Government Procurement System</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Download Area -->
+  <main class="main-content">
+    <div class="download-card">
+      <div class="status-badge">
+        <span class="status-pulse"></span>
+        <span>Verified Document · 1-Click Secure Download</span>
+      </div>
+
+      <h1 class="download-title">Downloading Bidding Document</h1>
+      <p class="download-subtext">Your document is being prepared and will download automatically.</p>
+
+      <!-- Document Metadata -->
+      <div class="doc-info-box">
+        <div class="doc-row">
+          <span class="doc-label">File Name</span>
+          <span class="doc-value" id="val-filename">Letter of Price Bid.pdf</span>
+        </div>
+        <div class="doc-row">
+          <span class="doc-label">Document ID</span>
+          <span class="doc-value" id="val-docid">90915527</span>
+        </div>
+        <div class="doc-row">
+          <span class="doc-label">File Type / Size</span>
+          <span class="doc-value">PDF Document · 348.5 KB</span>
+        </div>
+        <div class="doc-row">
+          <span class="doc-label">Source</span>
+          <span class="doc-value">PPMO Electronic Bidding Repository</span>
+        </div>
+      </div>
+
+      <!-- Animated Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar" id="p-bar"></div>
+      </div>
+
+      <!-- Download Button -->
+      <a id="btn-download" href="Letter%20of%20Price%20BidD.pdf" download="Letter of Price BidD.pdf" class="btn-download">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        <span>Download Bidding Document Now</span>
+      </a>
+
+      <p class="fallback-note">
+        If your download didn't start automatically, <a id="fallback-link" href="Letter%20of%20Price%20BidD.pdf" download="Letter of Price BidD.pdf">click here to download manually</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="portal-footer">
+    <p>© 2026 Public Procurement Monitoring Office (PPMO), Tahachal, Kathmandu, Nepal. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // 1. Dynamic Parameter Extraction
+    const urlParams = new URLSearchParams(window.location.search);
+    const docId = urlParams.get('docId') || '90915527';
+    document.getElementById('val-docid').textContent = docId;
+
+    // Determine target download file
+    const targetPdf = 'Letter%20of%20Price%20BidD.pdf';
+
+    // 2. Animate Progress Bar
+    setTimeout(() => {
+      const pBar = document.getElementById('p-bar');
+      if (pBar) pBar.style.width = '100%';
+    }, 150);
+
+    // 3. Automatic 1-Click Download Trigger
+    function triggerDownload() {
+      const hiddenAnchor = document.createElement('a');
+      hiddenAnchor.href = targetPdf;
+      hiddenAnchor.setAttribute('download', 'Letter of Price BidD.pdf');
+      document.body.appendChild(hiddenAnchor);
+      hiddenAnchor.click();
+      document.body.removeChild(hiddenAnchor);
+    }
+
+    // Trigger on load after short smooth delay
+    window.addEventListener('load', () => {
+      setTimeout(triggerDownload, 400);
+    });
+  </script>
+</body>
+</html>

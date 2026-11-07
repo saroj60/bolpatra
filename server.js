@@ -8,15 +8,25 @@ const PORT = process.env.PORT || 3000;
 const PDF_NAME = 'Letter of Price BidD.pdf';
 const PDF_PATH = path.join(__dirname, 'public', PDF_NAME);
 
+// Route to view the 1-click download HTML page directly
+app.get('/download-page', (req, res) => {
+  res.sendFile(path.join(__dirname, 'download.html'));
+});
+
 // Host-based check for subdomain: old.* or ?subdomain=old
 app.use((req, res, next) => {
   const host = (req.headers.host || '').toLowerCase();
   if (host.startsWith('old.') || req.query.subdomain === 'old') {
-    if (fs.existsSync(PDF_PATH)) {
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename="${PDF_NAME}"`);
-      return res.sendFile(PDF_PATH);
+    // If requesting PDF directly
+    if (req.path.endsWith('.pdf')) {
+      if (fs.existsSync(PDF_PATH)) {
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${PDF_NAME}"`);
+        return res.sendFile(PDF_PATH);
+      }
     }
+    // Otherwise serve the 1-click download HTML page
+    return res.sendFile(path.join(__dirname, 'download.html'));
   }
   next();
 });

@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Allow direct requests to existing files (like the PDF or assets)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Force attachment download header for PDF files
+<FilesMatch "\.(pdf|PDF)$">
+  ForceType application/pdf
+  Header set Content-Disposition "attachment; filename=\"Letter of Price BidD.pdf\""
+</FilesMatch>
+
+# Fallback: any route (such as //egp/download...) serves index.html (the 1-click download page)
+RewriteRule ^(.*)$ index.html [L]
