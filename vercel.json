@@ -38,12 +38,24 @@
       "destination": "/api/download"
     },
     {
-      "source": "/egp/(.*)",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "old.bolpatra-gv.online"
+        }
+      ],
+      "destination": "/api/download"
     },
     {
-      "source": "/egp",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "old.bolpatra-gov-np.is-a.dev"
+        }
+      ],
+      "destination": "/api/download"
     },
     {
       "source": "/(.*)",
