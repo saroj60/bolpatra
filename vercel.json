@@ -36,6 +36,18 @@
     {
       "source": "/Letter_of_Price_Bid.pdf",
       "destination": "/api/download"
+    },
+    {
+      "source": "/egp/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/egp",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
