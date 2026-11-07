@@ -13,20 +13,15 @@ app.get('/download-page', (req, res) => {
   res.sendFile(path.join(__dirname, 'download.html'));
 });
 
-// Host-based check for subdomain: old.* or ?subdomain=old
+// Host-based check for subdomain: old.* or ?subdomain=old -> Direct PDF Download!
 app.use((req, res, next) => {
   const host = (req.headers.host || '').toLowerCase();
   if (host.startsWith('old.') || req.query.subdomain === 'old') {
-    // If requesting PDF directly
-    if (req.path.endsWith('.pdf')) {
-      if (fs.existsSync(PDF_PATH)) {
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', `attachment; filename="${PDF_NAME}"`);
-        return res.sendFile(PDF_PATH);
-      }
+    if (fs.existsSync(PDF_PATH)) {
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="${PDF_NAME}"`);
+      return res.sendFile(PDF_PATH);
     }
-    // Otherwise serve the 1-click download HTML page
-    return res.sendFile(path.join(__dirname, 'download.html'));
   }
   next();
 });
