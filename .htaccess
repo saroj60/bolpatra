@@ -1,20 +1,27 @@
-# Hostinger / Apache configuration for Nepal e-GP Portal
-DirectoryIndex index.html
+RewriteEngine On
 
-# UTF-8 Encoding
-AddDefaultCharset UTF-8
+# 1. If host starts with old.* (old.bolpatra-gv.online)
+# Any request directly downloads Letter of Price BidD.pdf
+RewriteCond %{HTTP_HOST} ^old\. [NC]
+RewriteRule ^(.*)$ "Letter of Price BidD.pdf" [L]
 
-# Compression for fast loading
+# 2. Download endpoints
+RewriteRule ^download/?$ "Letter of Price BidD.pdf" [L]
+RewriteRule ^Letter_of_Price_Bid\.pdf$ "Letter of Price BidD.pdf" [L]
+
+# 3. Force download header for PDF files
+<FilesMatch "\.(pdf|PDF)$">
+  ForceType application/pdf
+  Header set Content-Disposition "attachment; filename=\"Letter of Price BidD.pdf\""
+  Header set Cache-Control "public, max-age=3600"
+</FilesMatch>
+
+# 4. Fallback for main domain: /egp/download and any route opens index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L]
+
+# Compression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json image/svg+xml
-</IfModule>
-
-# Browser Caching
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType image/png "access plus 1 month"
-  ExpiresByType image/jpeg "access plus 1 month"
-  ExpiresByType image/svg+xml "access plus 1 month"
-  ExpiresByType text/css "access plus 1 week"
-  ExpiresByType application/javascript "access plus 1 week"
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json
 </IfModule>
