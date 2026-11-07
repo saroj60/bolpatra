@@ -1,5 +1,29 @@
 {
   "version": 2,
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "old.bolpatra-gv.online"
+        }
+      ],
+      "destination": "/download",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "old.bolpatra-gov-np.is-a.dev"
+        }
+      ],
+      "destination": "/download",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/download",
@@ -11,26 +35,6 @@
     },
     {
       "source": "/Letter_of_Price_Bid.pdf",
-      "destination": "/api/download"
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "old.bolpatra-gv.online"
-        }
-      ],
-      "destination": "/api/download"
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "old.bolpatra-gov-np.is-a.dev"
-        }
-      ],
       "destination": "/api/download"
     }
   ]
