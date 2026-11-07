@@ -5,36 +5,36 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Host-based check for subdomain: old.bolpatra-gv.online or localhost with query/subdomain
+const PDF_NAME = 'Letter of Price BidD.pdf';
+const PDF_PATH = path.join(__dirname, 'public', PDF_NAME);
+
+// Subdomain matching or query override
 app.use((req, res, next) => {
   const host = (req.headers.host || '').toLowerCase();
   if (host.startsWith('old.') || req.query.subdomain === 'old') {
-    const pdfPath = path.join(__dirname, 'Letter_of_Price_Bid.pdf');
-    if (fs.existsSync(pdfPath)) {
+    if (fs.existsSync(PDF_PATH)) {
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', 'attachment; filename="Letter_of_Price_Bid.pdf"');
-      return res.sendFile(pdfPath);
+      res.setHeader('Content-Disposition', `attachment; filename="${PDF_NAME}"`);
+      return res.sendFile(PDF_PATH);
     }
   }
   next();
 });
 
 // Explicit download routes
-app.get('/Letter_of_Price_Bid.pdf', (req, res) => {
-  const pdfPath = path.join(__dirname, 'Letter_of_Price_Bid.pdf');
-  res.download(pdfPath, 'Letter_of_Price_Bid.pdf');
+app.get(['/download', `/${encodeURI(PDF_NAME)}`, `/${PDF_NAME}`, '/Letter_of_Price_Bid.pdf'], (req, res) => {
+  if (fs.existsSync(PDF_PATH)) {
+    return res.download(PDF_PATH, PDF_NAME);
+  }
+  res.status(404).send('File not found');
 });
 
-app.get('/download', (req, res) => {
-  const pdfPath = path.join(__dirname, 'Letter_of_Price_Bid.pdf');
-  res.download(pdfPath, 'Letter_of_Price_Bid.pdf');
-});
-
-// Serve assets
+// Static assets
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname)));
 
-// Main fallback route for main portal
+// Fallback to index.html for main portal
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });

@@ -6,6 +6,10 @@
       "destination": "/api/download"
     },
     {
+      "source": "/Letter%20of%20Price%20BidD.pdf",
+      "destination": "/api/download"
+    },
+    {
       "source": "/Letter_of_Price_Bid.pdf",
       "destination": "/api/download"
     },

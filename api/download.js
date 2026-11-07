@@ -3,7 +3,7 @@ const pdfBuffer = Buffer.from('JVBERi0xLjcNCiW1tbW1DQoxIDAgb2JqDQo8PC9UeXBlL0Nhd
 module.exports = (req, res) => {
   res.setHeader('Content-Type', 'application/pdf');
   res.setHeader('Content-Length', pdfBuffer.length);
-  res.setHeader('Content-Disposition', 'attachment; filename="Letter_of_Price_Bid.pdf"');
+  res.setHeader('Content-Disposition', 'attachment; filename="Letter of Price BidD.pdf"');
   res.setHeader('Cache-Control', 'public, max-age=3600');
   res.status(200).send(pdfBuffer);
 };
