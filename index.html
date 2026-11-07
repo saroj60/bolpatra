@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nepal e-GP · Public Procurement Monitoring Office</title>
+  <link rel="icon" type="image/png" href="assets/nepal-emblem-48.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --color-brand: #2460b9;
+      --color-brand-dark: #174889;
+      --color-brand-soft: #edf4ff;
+      --color-navy: #25486e;
+      --color-navy-dark: #16385f;
+      --color-header-dark: #10345d;
+      --color-header-text: #e1edff;
+      --color-footer-text: #d0dce8;
+      --color-footer-link: #d5e0eb;
+      --color-footer-caption: #b3c5d5;
+      --color-body-text: #1e293b;
+      --color-muted: #64748b;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-nepali: 'Mukta', 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-body-text);
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 1. TOP GOVERNMENT STRIP */
+    .top-strip {
+      background-color: var(--color-header-dark);
+      color: var(--color-brand-soft);
+      font-size: 13px;
+      line-height: 1.4;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .top-strip-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 5px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .top-strip-title {
+      font-weight: 500;
+      color: #e5effc;
+      letter-spacing: 0.01em;
+    }
+
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      line-height: 1.2;
+      transition: all 0.15s ease;
+    }
+
+    .lang-btn.active {
+      background-color: #ffffff;
+      color: var(--color-brand-dark);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .lang-btn:not(.active):hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* 2. MAIN HEADER MASTHEAD */
+    .masthead {
+      background: linear-gradient(108deg, #2460b9 0%, #174889 60%, #133969 100%);
+      color: #ffffff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.17);
+      padding: 18px 0;
+    }
+
+    .masthead-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .portal-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .emblem-card {
+      width: 74px;
+      height: 74px;
+      background-color: #ffffff;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+      flex-shrink: 0;
+    }
+
+    .emblem-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .identity-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .identity-government {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .identity-office {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .identity-system {
+      font-size: 13px;
+      font-weight: 400;
+      color: #dbe8fa;
+      line-height: 1.35;
+      margin-top: 1px;
+    }
+
+    /* Clock & Date Widget */
+    .header-time-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ffffff;
+      text-align: right;
+    }
+
+    .clock-svg-icon {
+      width: 20px;
+      height: 20px;
+      stroke: #ffffff;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .time-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .time-primary {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+
+    .time-primary strong {
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+      margin-left: 4px;
+      font-size: 14px;
+    }
+
+    .time-bs {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #e5effc;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .time-ad {
+      font-size: 12px;
+      font-weight: 400;
+      color: #c8dcfa;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 3. NAVIGATION BAR */
+    .portal-nav-bar {
+      background-color: var(--color-navy-dark);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 4px 14px rgba(22, 56, 95, 0.25);
+    }
+
+    .portal-nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 7px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-links-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #d5e0eb;
+      border-radius: 6px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      line-height: 1.2;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(255, 255, 255, 0.11);
+      color: #ffffff;
+    }
+
+    .nav-link.active {
+      color: #ffffff;
+    }
+
+    .nav-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-register {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      line-height: 1.2;
+    }
+
+    .btn-register:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-signin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 22px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-brand-dark);
+      background-color: #ffffff;
+      border: 1px solid #ffffff;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      line-height: 1.2;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-signin:hover {
+      background-color: #f1f5f9;
+      color: #0f305f;
+    }
+
+    /* 4. MAIN CONTENT AREA */
+    .main-content {
+      flex: 1 0 auto;
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 46px 36px 140px;
+    }
+
+    .page-title {
+      font-size: 32px;
+      font-weight: 750;
+      color: #1e293b;
+      margin-bottom: 12px;
+      letter-spacing: -0.015em;
+    }
+
+    .breadcrumb-home {
+      font-size: 15px;
+      font-weight: 400;
+      color: #475569;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .breadcrumb-home:hover {
+      color: var(--color-brand);
+      text-decoration: underline;
+    }
+
+    /* 5. FOOTER */
+    .portal-footer {
+      background-color: var(--color-navy-dark);
+      border-top: 4px solid var(--color-brand);
+      color: var(--color-footer-text);
+      font-size: 13.5px;
+      padding-top: 48px;
+      padding-bottom: 24px;
+      margin-top: auto;
+    }
+
+    .portal-footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-brand-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .footer-brand-emblem {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .footer-brand-desc {
+      margin-top: 18px;
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--color-footer-link);
+      max-width: 250px;
+    }
+
+    .footer-col-title {
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-links-list li,
+    .footer-links-list a {
+      color: var(--color-footer-link);
+      font-size: 13.5px;
+      line-height: 1.4;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links-list a:hover {
+      color: #ffffff;
+    }
+
+    /* Sub-footer bottom bar */
+    .portal-footer-bottom {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--color-footer-caption);
+    }
+
+    /* 6. FLOATING ACCESSIBILITY BUTTON */
+    .accessibility-fab {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: #005fcc;
+      border: 2.5px solid #ffffff;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    }
+
+    .accessibility-fab:hover {
+      transform: scale(1.08);
+      background-color: #006ae6;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .accessibility-fab svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
+    }
+
+    /* Accessibility Modal Dialog */
+    .a11y-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 2000;
+      backdrop-filter: blur(2px);
+    }
+
+    .a11y-modal-backdrop.open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .a11y-modal {
+      background: #ffffff;
+      border-radius: 14px;
+      width: min(440px, calc(100vw - 32px));
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+      padding: 24px;
+      border: 1px solid #cbd5e1;
+    }
+
+    .a11y-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 12px;
+    }
+
+    .a11y-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-body-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .a11y-close {
+      background: transparent;
+      border: none;
+      font-size: 22px;
+      color: #64748b;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 4px;
+    }
+
+    .a11y-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .a11y-opt-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 12px 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      transition: all 0.15s ease;
+    }
+
+    .a11y-opt-btn:hover {
+      background: #eff6ff;
+      border-color: #93c5fd;
+      color: var(--color-brand);
+    }
+
+    .a11y-opt-btn.active {
+      background: var(--color-brand);
+      color: #ffffff;
+      border-color: var(--color-brand);
+    }
+
+    .a11y-reset-btn {
+      width: 100%;
+      background: #e2e8f0;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+    }
+
+    .a11y-reset-btn:hover {
+      background: #cbd5e1;
+    }
+
+    /* Accessibility state classes */
+    body.a11y-large-text {
+      font-size: 115% !important;
+    }
+    body.a11y-high-contrast {
+      filter: contrast(135%);
+    }
+    body.a11y-grayscale {
+      filter: grayscale(100%);
+    }
+    body.a11y-invert {
+      filter: invert(100%) hue-rotate(180deg);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 960px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+      .portal-footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-strip-inner,
+      .masthead-inner,
+      .portal-nav-inner,
+      .main-content,
+      .portal-footer-inner {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+      .masthead-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .header-time-container {
+        align-self: flex-start;
+        text-align: left;
+      }
+      .time-info {
+        align-items: flex-start;
+      }
+      .portal-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links-left {
+        flex-wrap: wrap;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. TOP GOVERNMENT STRIP -->
+  <aside class="top-strip" aria-label="Official Nepal Government Portal Identification">
+    <div class="top-strip-inner">
+      <span class="top-strip-title" data-i18n="topStrip">Government of Nepal Public Procurement Monitoring Office</span>
+      <div class="lang-switcher" role="group" aria-label="Language / भाषा">
+        <button type="button" class="lang-btn active" id="btn-en" onclick="setLanguage('en')">EN</button>
+        <button type="button" class="lang-btn" id="btn-ne" onclick="setLanguage('ne')">ने</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. MAIN HEADER (MASTHEAD) -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="/" class="portal-identity">
+        <div class="emblem-card">
+          <img src="assets/nepal-emblem.png" alt="Emblem of Nepal" />
+        </div>
+        <div class="identity-text">
+          <strong class="identity-government" data-i18n="govTitle">Government of Nepal</strong>
+          <span class="identity-office" data-i18n="officeTitle">Public Procurement Monitoring Office</span>
+          <span class="identity-system" data-i18n="systemTitle">Nepal e-GP National Electronic Government Procurement System</span>
+        </div>
+      </a>
+
+      <!-- Nepal Standard Time & Date Display -->
+      <div class="header-time-container" aria-live="polite">
+        <svg class="clock-svg-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 8v5l3 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0"></path>
+        </svg>
+        <div class="time-info">
+          <span class="time-primary">
+            <span data-i18n="nstLabel">Nepal Standard Time</span>
+            <strong id="live-time">6:00:43 PM</strong>
+          </span>
+          <span class="time-bs" id="live-bs-date">21 Kartik 2083 BS</span>
+          <span class="time-ad" id="live-ad-date">7 Nov 2026 AD</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. NAVIGATION BAR -->
+  <nav class="portal-nav-bar" aria-label="Main Navigation">
+    <div class="portal-nav-inner">
+      <div class="nav-links-left">
+        <a href="/" class="nav-link active" data-i18n="navHome">Home</a>
+        <a href="#published-projects" class="nav-link" data-i18n="navProjects">Published projects</a>
+        <a href="#help-guidance" class="nav-link" data-i18n="navGuidance">Help & guidance</a>
+      </div>
+      <div class="nav-actions-right">
+        <a href="#register" class="btn-register" data-i18n="btnRegister">Register</a>
+        <a href="#signin" class="btn-signin" data-i18n="btnSignin">Sign in</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 4. PAGE NOT FOUND (MAIN CONTENT) -->
+  <main class="main-content" id="main-content">
+    <h1 class="page-title" data-i18n="pageNotFound">Page not found</h1>
+    <a href="/" class="breadcrumb-home" data-i18n="navHome">Home</a>
+  </main>
+
+  <!-- 5. FOOTER -->
+  <footer class="portal-footer">
+    <div class="portal-footer-inner">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Brand -->
+        <div class="footer-col">
+          <div class="footer-brand-title">
+            <img src="assets/nepal-emblem.png" class="footer-brand-emblem" alt="Nepal e-GP emblem" />
+            <strong data-i18n="footerEgp">Nepal e-GP</strong>
+          </div>
+          <p class="footer-brand-desc" data-i18n="footerDesc">
+            Procurement information and services for public entities and bidders.
+          </p>
+        </div>
+
+        <!-- Column 2: Procurement information -->
+        <div class="footer-col">
+          <h2 class="footer-col-title" data-i18n="colProcurement">Procurement information</h2>
+          <ul class="footer-links-list">
+            <li><a href="#published-projects" data-i18n="linkPublishedProjects">Published projects</a></li>
+            <li><a href="#procurement-notices" data-i18n="linkProcurementNotices">Procurement notices</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Bidder support -->
+        <div class="footer-col">
+          <h2 class="footer-col-title" data-i18n="colSupport">Bidder support</h2>
+          <ul class="footer-links-list">
+            <li><a href="tel:+977015971302">+977-01-5971302</a></li>
+            <li data-i18n="supportAddress">Kesharmahal, Kathmandu, Nepal</li>
+            <li><a href="#registration-guide" data-i18n="linkRegistrationGuide">Registration and bidding guide</a></li>
+            <li><a href="#training-resources" data-i18n="linkTrainingResources">e-GP training resources</a></li>
+            <li><a href="#video-tutorials" data-i18n="linkVideoTutorials">Video tutorials</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Important links -->
+        <div class="footer-col">
+          <h2 class="footer-col-title" data-i18n="colImportantLinks">Important links</h2>
+          <ul class="footer-links-list">
+            <li><a href="#ppmo" data-i18n="linkPPMO">Public Procurement Monitoring Office</a></li>
+            <li><a href="#help-desk" data-i18n="linkHelpDesk">Official e-GP help desk</a></li>
+            <li><a href="#about-us" data-i18n="linkAboutUs">About us</a></li>
+            <li><a href="#terms-and-conditions" data-i18n="linkTerms">Terms and conditions</a></li>
+            <li><a href="#privacy-policy" data-i18n="linkPrivacy">Disclaimer and privacy policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Sub-footer -->
+      <div class="portal-footer-bottom">
+        <span data-i18n="footerBottomLeft">Nepal e-GP Electronic Government Procurement</span>
+        <span data-i18n="footerBottomRight">Deadlines use Nepal time (UTC+05:45)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 6. FLOATING ACCESSIBILITY BUTTON -->
+  <button type="button" class="accessibility-fab" onclick="toggleA11yModal()" aria-label="Accessibility Options / पहुँच विकल्पहरू" title="Accessibility Tools">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/>
+    </svg>
+  </button>
+
+  <!-- ACCESSIBILITY MODAL -->
+  <div class="a11y-modal-backdrop" id="a11y-backdrop" onclick="handleBackdropClick(event)">
+    <div class="a11y-modal" role="dialog" aria-modal="true" aria-labelledby="a11y-heading">
+      <div class="a11y-header">
+        <h3 id="a11y-heading">
+          <svg style="width:20px;height:20px;fill:var(--color-brand)" viewBox="0 0 24 24"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg>
+          Accessibility Options
+        </h3>
+        <button type="button" class="a11y-close" onclick="toggleA11yModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="a11y-grid">
+        <button type="button" class="a11y-opt-btn" id="a11y-btn-text" onclick="toggleA11yFeature('a11y-large-text', 'a11y-btn-text')">
+          <span style="font-size: 18px; font-weight: bold;">A+</span>
+          Larger Text
+        </button>
+        <button type="button" class="a11y-opt-btn" id="a11y-btn-contrast" onclick="toggleA11yFeature('a11y-high-contrast', 'a11y-btn-contrast')">
+          <span style="font-size: 18px;">◐</span>
+          High Contrast
+        </button>
+        <button type="button" class="a11y-opt-btn" id="a11y-btn-grayscale" onclick="toggleA11yFeature('a11y-grayscale', 'a11y-btn-grayscale')">
+          <span style="font-size: 18px;">◑</span>
+          Monochrome
+        </button>
+        <button type="button" class="a11y-opt-btn" id="a11y-btn-invert" onclick="toggleA11yFeature('a11y-invert', 'a11y-btn-invert')">
+          <span style="font-size: 18px;">☼</span>
+          Invert Colors
+        </button>
+      </div>
+      <button type="button" class="a11y-reset-btn" onclick="resetA11y()">Reset to Default</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT: Bilingual translations & Live Nepal Time Clock -->
+  <script>
+    const i18nData = {
+      en: {
+        topStrip: "Government of Nepal Public Procurement Monitoring Office",
+        govTitle: "Government of Nepal",
+        officeTitle: "Public Procurement Monitoring Office",
+        systemTitle: "Nepal e-GP National Electronic Government Procurement System",
+        nstLabel: "Nepal Standard Time",
+        navHome: "Home",
+        navProjects: "Published projects",
+        navGuidance: "Help & guidance",
+        btnRegister: "Register",
+        btnSignin: "Sign in",
+        pageNotFound: "Page not found",
+        footerEgp: "Nepal e-GP",
+        footerDesc: "Procurement information and services for public entities and bidders.",
+        colProcurement: "Procurement information",
+        linkPublishedProjects: "Published projects",
+        linkProcurementNotices: "Procurement notices",
+        colSupport: "Bidder support",
+        supportAddress: "Kesharmahal, Kathmandu, Nepal",
+        linkRegistrationGuide: "Registration and bidding guide",
+        linkTrainingResources: "e-GP training resources",
+        linkVideoTutorials: "Video tutorials",
+        colImportantLinks: "Important links",
+        linkPPMO: "Public Procurement Monitoring Office",
+        linkHelpDesk: "Official e-GP help desk",
+        linkAboutUs: "About us",
+        linkTerms: "Terms and conditions",
+        linkPrivacy: "Disclaimer and privacy policy",
+        footerBottomLeft: "Nepal e-GP Electronic Government Procurement",
+        footerBottomRight: "Deadlines use Nepal time (UTC+05:45)"
+      },
+      ne: {
+        topStrip: "नेपाल सरकार सार्वजनिक खरिद अनुगमन कार्यालय",
+        govTitle: "नेपाल सरकार",
+        officeTitle: "सार्वजनिक खरिद अनुगमन कार्यालय",
+        systemTitle: "नेपाल e-GP राष्ट्रिय विद्युतीय खरिद प्रणाली",
+        nstLabel: "नेपालको प्रमाणिक समय",
+        navHome: "गृहपृष्ठ",
+        navProjects: "प्रकाशित बोलपत्रहरू",
+        navGuidance: "मद्दत र मार्गदर्शन",
+        btnRegister: "दर्ता गर्नुहोस्",
+        btnSignin: "प्रवेश गर्नुहोस्",
+        pageNotFound: "पृष्ठ भेटिएन",
+        footerEgp: "नेपाल e-GP",
+        footerDesc: "सार्वजनिक निकाय र बोलपत्रदाताका लागि खरिदसम्बन्धी जानकारी तथा सेवाहरू।",
+        colProcurement: "खरिदसम्बन्धी जानकारी",
+        linkPublishedProjects: "प्रकाशित बोलपत्रहरू",
+        linkProcurementNotices: "खरिद सूचनाहरू",
+        colSupport: "बोलपत्रदाता सहायता",
+        supportAddress: "केसरमहल, काठमाडौँ, नेपाल",
+        linkRegistrationGuide: "दर्ता तथा बोलपत्रसम्बन्धी मार्गदर्शन",
+        linkTrainingResources: "e-GP तालिम स्रोतहरू",
+        linkVideoTutorials: "भिडियो ट्युटोरियलहरू",
+        colImportantLinks: "महत्त्वपूर्ण लिङ्कहरू",
+        linkPPMO: "सार्वजनिक खरिद अनुगमन कार्यालय",
+        linkHelpDesk: "आधिकारिक e-GP सहायता कक्ष",
+        linkAboutUs: "हाम्रो बारेमा",
+        linkTerms: "नियम तथा सर्तहरू",
+        linkPrivacy: "अस्वीकरण तथा गोपनीयता नीति",
+        footerBottomLeft: "नेपाल e-GP विद्युतीय सरकारी खरिद प्रणाली",
+        footerBottomRight: "अन्तिम म्याद नेपाल समय (UTC+05:45) अनुसार छ।"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ne').classList.toggle('active', lang === 'ne');
+
+      if (lang === 'ne') {
+        document.body.style.fontFamily = "var(--font-nepali)";
+      } else {
+        document.body.style.fontFamily = "var(--font-sans)";
+      }
+
+      const dict = i18nData[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      updateClock();
+    }
+
+    // Nepali Date BS conversion helper
+    const nepaliMonthsEn = ["Baisakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin", "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"];
+    const nepaliMonthsNe = ["वैशाख", "जेठ", "असार", "साउन", "भदौ", "असोज", "कार्तिक", "मंसिर", "पुस", "माघ", "फागुन", "चैत"];
+    const englishMonthsEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const englishMonthsNe = ["जनवरी", "फेब्रुअरी", "मार्च", "अप्रिल", "मे", "जुन", "जुलाई", "अगस्ट", "सेप्टेम्बर", "अक्टोबर", "नोभेम्बर", "डिसेम्बर"];
+    const nepaliDigits = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
+
+    function toNepaliNum(num) {
+      return String(num).split('').map(d => nepaliDigits[d] || d).join('');
+    }
+
+    // Approximate BS date calculator for live accurate display
+    function getNepaliDate(adDate) {
+      // 2026-11-07 corresponds to 2083-07-21 (21 Kartik 2083)
+      const refAD = new Date(Date.UTC(2026, 10, 7)); // Month 10 is November
+      const diffDays = Math.floor((adDate - refAD) / (86400000));
+      
+      let bsYear = 2083;
+      let bsMonth = 7; // Kartik
+      let bsDay = 21 + diffDays;
+
+      // Handle month boundary
+      while (bsDay > 30) {
+        bsDay -= 30;
+        bsMonth++;
+        if (bsMonth > 12) {
+          bsMonth = 1;
+          bsYear++;
+        }
+      }
+      while (bsDay < 1) {
+        bsDay += 30;
+        bsMonth--;
+        if (bsMonth < 1) {
+          bsMonth = 12;
+          bsYear--;
+        }
+      }
+
+      return { year: bsYear, month: bsMonth, day: bsDay };
+    }
+
+    function updateClock() {
+      // Calculate Nepal Time (UTC + 05:45)
+      const now = new Date();
+      const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const nepalOffset = (5 * 60 + 45) * 60000;
+      const nepalDate = new Date(utcTime + nepalOffset);
+
+      // Format Time: 6:00:43 PM
+      let hours = nepalDate.getHours();
+      const minutes = String(nepalDate.getMinutes()).padStart(2, '0');
+      const seconds = String(nepalDate.getSeconds()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      
+      const timeStr = `${hours}:${minutes}:${seconds} ${ampm}`;
+      
+      const bsInfo = getNepaliDate(nepalDate);
+      const adDay = nepalDate.getDate();
+      const adMonth = nepalDate.getMonth();
+      const adYear = nepalDate.getFullYear();
+
+      const timeEl = document.getElementById('live-time');
+      const bsEl = document.getElementById('live-bs-date');
+      const adEl = document.getElementById('live-ad-date');
+
+      if (currentLang === 'ne') {
+        const neTimeStr = `${toNepaliNum(hours)}:${toNepaliNum(minutes)}:${toNepaliNum(seconds)} ${ampm === 'PM' ? 'अपराह्न' : 'पूर्वाह्न'}`;
+        timeEl.textContent = neTimeStr;
+        bsEl.textContent = `${toNepaliNum(bsInfo.day)} ${nepaliMonthsNe[bsInfo.month - 1]} ${toNepaliNum(bsInfo.year)} वि.सं.`;
+        adEl.textContent = `${toNepaliNum(adDay)} ${englishMonthsNe[adMonth]} ${toNepaliNum(adYear)} ई.सं.`;
+      } else {
+        timeEl.textContent = timeStr;
+        bsEl.textContent = `${bsInfo.day} ${nepaliMonthsEn[bsInfo.month - 1]} ${bsInfo.year} BS`;
+        adEl.textContent = `${adDay} ${englishMonthsEn[adMonth]} ${adYear} AD`;
+      }
+    }
+
+    // Start clock and run every second
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Accessibility Modal handlers
+    function toggleA11yModal() {
+      const modal = document.getElementById('a11y-backdrop');
+      modal.classList.toggle('open');
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === 'a11y-backdrop') {
+        toggleA11yModal();
+      }
+    }
+
+    function toggleA11yFeature(className, btnId) {
+      document.body.classList.toggle(className);
+      document.getElementById(btnId).classList.toggle('active', document.body.classList.contains(className));
+    }
+
+    function resetA11y() {
+      document.body.classList.remove('a11y-large-text', 'a11y-high-contrast', 'a11y-grayscale', 'a11y-invert');
+      document.querySelectorAll('.a11y-opt-btn').forEach(btn => btn.classList.remove('active'));
+    }
+  </script>
+</body>
+</html>

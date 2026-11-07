@@ -1,0 +1,11 @@
+{
+  "name": "bolpatra-ui",
+  "version": "1.0.0",
+  "description": "Nepal e-GP (Public Procurement Monitoring Office) Portal UI Clone",
+  "scripts": {
+    "start": "npx serve -l 3000 ."
+  },
+  "keywords": ["nepal", "egp", "bolpatra", "ui"],
+  "author": "",
+  "license": "ISC"
+}
