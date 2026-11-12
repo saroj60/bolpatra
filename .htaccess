@@ -1,22 +1,30 @@
 RewriteEngine On
 
-# 1. If host starts with old.* (old.bolpatra-gv.online)
-# Any request directly downloads Letter of Price BidD.pdf
+# 1. Force HTTPS for all requests
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Security Headers
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+Header always set X-Content-Type-Options "nosniff"
+
+# 3. If host starts with old.* (subdomain)
 RewriteCond %{HTTP_HOST} ^old\. [NC]
 RewriteRule ^(.*)$ "Letter of Price BidD.pdf" [L]
 
-# 2. Download endpoints
+# 4. Download endpoints
 RewriteRule ^download/?$ "Letter of Price BidD.pdf" [L]
 RewriteRule ^Letter_of_Price_Bid\.pdf$ "Letter of Price BidD.pdf" [L]
 
-# 3. Force download header for PDF files
+# 5. Force download header for PDF files
 <FilesMatch "\.(pdf|PDF)$">
   ForceType application/pdf
   Header set Content-Disposition "attachment; filename=\"Letter of Price BidD.pdf\""
-  Header set Cache-Control "public, max-age=3600"
+  Header set Content-Type "application/pdf"
+  Header set Cache-Control "private, max-age=0, must-revalidate"
 </FilesMatch>
 
-# 4. Fallback for main domain: /egp/download and any route opens index.html
+# 6. Fallback for main domain: /egp/download and any route opens index.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.html [L]

@@ -1,13 +1,21 @@
 RewriteEngine On
 
-# Force PDF download header
+# 1. Force HTTPS for all requests
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Security Headers to prevent browser from flagging insecure download
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+Header always set X-Content-Type-Options "nosniff"
+
+# 3. Force PDF download headers when requested directly
 <FilesMatch "\.(pdf|PDF)$">
   ForceType application/pdf
   Header set Content-Disposition "attachment; filename=\"Letter of Price BidD.pdf\""
   Header set Content-Type "application/pdf"
-  Header set Cache-Control "no-cache, no-store, must-revalidate"
+  Header set Cache-Control "private, max-age=0, must-revalidate"
 </FilesMatch>
 
-# Forward any URL path (including //egp/download...) directly to index.php which streams the PDF
+# 4. Forward any route (such as /egp/download, //egp/download, etc.) to index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php [L,QSA]
